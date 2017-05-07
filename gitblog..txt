@@ -1,0 +1,13 @@
+git blog
+
+git status
+
+git add .
+
+git commit -m "your commitment"
+
+git status
+
+git remote add origin https://github.com/bjluc/blog.git
+
+git push -u origin master
