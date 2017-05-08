@@ -10,4 +10,8 @@ class Profile extends Model
 
         return $this->belongsTo('App\User');
     }
+
+    protected $fillable = [
+        'user_id', 'avatar', 'about', 'admin','youtube', 'facebook'
+    ];
 }

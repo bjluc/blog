@@ -49,5 +49,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){ Route::g
     Route::get('/tag/edit/{id}',['uses' => 'TagsController@edit', 'as' =>'tag.edit']);
     Route::post('/tag/update/{id}',['uses' => 'TagsController@update','as' =>'tag.update']);
     Route::get('/tag/delete/{id}',['uses' => 'TagsController@destroy', 'as' =>'tag.delete']);
+
+//Users Profile
+    Route::get('/users', ['uses' => 'UsersController@index', 'as' =>'users']);
+    Route::get('/user/create',['uses' => 'UsersController@create', 'as' =>'user.create']);
+    Route::post('/user/store' , ['uses' => 'UsersController@store', 'as' => 'user.store']);
+
 });
 
