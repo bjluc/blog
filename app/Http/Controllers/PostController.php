@@ -69,15 +69,16 @@ class PostController extends Controller
         $post = Post::create([
             'title' => $request->title,
             'content' => $request->content,
-            'featured' => 'uploads/posts'.$featured_new_name,
+            'featured' => 'uploads/posts/'.$featured_new_name,
             'category_id' => $request->category_id,
             'slug' => str_slug($request->title)
             ]);
 
             Session::flash('success','Post created successfully');
 
-        //dd($request->all());
-            return redirect()->back();
+            //dd($request->all());
+            //return redirect()->back();
+            return redirect()->route('posts');
     }
 
     /**
