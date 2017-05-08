@@ -85,7 +85,15 @@ class CategoriesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
+
     {
+
+        $this->validate($request, [
+
+            'name' => 'required'
+
+            ]);
+        
         $category = Category::find($id);
 
         $category->name = $request->name;

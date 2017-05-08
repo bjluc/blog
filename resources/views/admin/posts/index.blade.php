@@ -30,7 +30,7 @@
 
                 <td>{{ $post->title }}</td>
 
-                <td>Edit</td>
+                <td><a href="{{ route('post.edit',['id' => $post->id]) }}" class="btn btn-xs btn-success">Edit</a></td>
 
                 <td><a href="{{ route('post.delete',['id' => $post->id]) }}" class="btn btn-xs btn-danger">Trash</a></td>
 
