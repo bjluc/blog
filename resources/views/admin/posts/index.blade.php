@@ -24,7 +24,7 @@
             </th>
         </thead>
         <tbody>      
-            
+        @if($posts->count() > 0) 
             @foreach($posts as $post)
             <tr>
 
@@ -38,6 +38,11 @@
 
             </tr>
             @endforeach
+        @else
+        <tr>
+            <th colspan="5" class="text-center">No posts yet.</th>
+        </tr>
+        @endif
         </tbody>
     </table>
     </div>

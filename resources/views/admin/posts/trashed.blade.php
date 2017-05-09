@@ -5,7 +5,9 @@
 @section('content')
 
 <div class="panel panel-default">
-    
+     <div class="panel-heading">
+       Trash
+   </div>
     <div class="panel-body">
             <table class="table table-hover">
         <thead>
@@ -26,7 +28,7 @@
             </th>
         </thead>
         <tbody>      
-            
+        @if($posts->count() > 0) 
             @foreach($posts as $post)
             <tr>
 
@@ -42,6 +44,11 @@
 
             </tr>
             @endforeach
+        @else
+        <tr>
+            <th colspan="5" class="text-center">No trash yet.</th>
+        </tr>
+        @endif
         </tbody>
     </table>
     </div>

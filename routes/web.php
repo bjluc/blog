@@ -52,8 +52,17 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){ Route::g
 
 //Users Profile
     Route::get('/users', ['uses' => 'UsersController@index', 'as' =>'users']);
+    Route::get('/user/admin/{id}', ['uses' => 'UsersController@admin', 'as' =>'user.admin'])->middleware('admin');
+    Route::get('/user/not-admin/{id}', ['uses' => 'UsersController@not_admin', 'as' =>'user.not.admin'])->middleware('admin');
     Route::get('/user/create',['uses' => 'UsersController@create', 'as' =>'user.create']);
     Route::post('/user/store' , ['uses' => 'UsersController@store', 'as' => 'user.store']);
+    Route::get('user/profile', ['uses' => 'ProfilesController@index', 'as' => 'user.profile']);
+    Route::post('user/profile/update', ['uses' => 'ProfilesController@update', 'as' => 'user.profile.update']);
+    Route::get('/user/delete/{id}',['uses' => 'UsersController@destroy', 'as' =>'user.delete']);
+
+//Settings
+    Route::get('/settings', ['uses' => 'SettingsController@index', 'as' => 'settings']);
+    Route::post('settings/update', ['uses' => 'SettingsController@update', 'as' => 'settings.update']);
 
 });
 

@@ -13,6 +13,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/toastr.min.css') }}" rel="stylesheet">
+    @yield('styles')
     
 
     <!-- Scripts -->
@@ -37,7 +38,7 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
+                    <a class="navbar-brand" href="{{ url('/admin/home') }}">
                         {{ config('app.name', 'Laravel') }}
                     </a>
                 </div>
@@ -95,11 +96,17 @@
                         <li class="list-group-item">
                             <a href="{{ route('tags') }}">Tags</a>
                         </li>
+
+                                @if(Auth::user()->admin)
+                                   <li class="list-group-item">
+                                    <a href="{{ route('users') }}">Users</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                    <a href="{{ route('user.create') }}">New users</a>
+                                    </li>
+                                @endif
                         <li class="list-group-item">
-                            <a href="{{ route('users') }}">Users</a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="{{ route('user.create') }}">New users</a>
+                            <a href="{{ route('user.profile') }}">My profile</a>
                         </li>
                         <li class="list-group-item">
                             <a href="{{ route('tag.create') }}">Create new tag</a>
@@ -117,6 +124,12 @@
                         <li class="list-group-item">
                             <a href="{{ route('post.create') }}">Create new post</a>
                         </li>
+                            @if(Auth::user()->admin)
+                            <li class="list-group-item">
+                            <a href="{{ route('settings') }}">Settings</a>
+                            </li>
+                            @endif
+                        
                     </ul>
 
                 </div>
@@ -143,5 +156,6 @@
         toastr.info("{{ Session::get('info') }}")
         @endif
     </script>
+    @yield('scripts')
 </body>
 </html>
