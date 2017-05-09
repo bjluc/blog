@@ -10,15 +10,13 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/test', function(){
+//Route::get('/test', function(){return App\User::find(1)->profile;});
 
-    return App\User::find(1)->profile;
-});
+//Front End Route
+Route::get('/', ['uses' => 'FrontEndController@index', 'as' => 'index']);
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
+//Back End Route
 Auth::routes();
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){ Route::get('/home', ['uses' => 'HomeController@index', 'as' => 'home']);
