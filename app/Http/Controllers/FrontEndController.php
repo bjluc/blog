@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Tag;
 use App\Post;
 use App\Category;
 use App\Setting;
@@ -23,4 +23,24 @@ class FrontEndController extends Controller
                         ->with('settings', Setting::first());
 
    }
+
+   public function singlePost($slug)
+
+   {
+
+      $post = Post::where('slug', $slug)->first();
+      $next_id = Post::where('id','>', $post->id)->min('id');
+      $previous_id = Post::where('id','<', $post->id)->max('id');
+
+      return view('single')->with('post', $post)
+                           ->with('title', $post->title)
+                           ->with('settings', Setting::first())
+                           ->with('categories', Category::take(5)->get())
+                           ->with('next', Post::find($next_id))
+                           ->with('prev', Post::find($previous_id))
+                           ->with('tags', Tag::all());
+
+
+   }
+
 }
