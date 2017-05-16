@@ -1,15 +1,21 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+
+Route::post('/subscribe', function(){
+$email = request('email');
+
+Newsletter::subscribe($email);
+
+Session::flash('subscribed','Succesfully subscribed.');
+
+return redirect()->back();
+
+});
+
+
+
+
+
 //Route::get('/test', function(){return App\User::find(1)->profile;});
 
 //Front End Route
@@ -31,7 +37,7 @@ Auth::routes();
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){ 
 
-    Route::get('/home', ['uses' => 'HomeController@index', 'as' => 'home']);
+    Route::get('/dashboard', ['uses' => 'HomeController@index', 'as' => 'home']);
 
 //PostController
     Route::get('/post/create' , ['uses' => 'PostController@create', 'as' => 'post.create']);
